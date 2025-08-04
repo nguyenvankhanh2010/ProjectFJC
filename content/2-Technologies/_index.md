@@ -17,7 +17,8 @@ In this section, you’ll explore each AWS service involved in the stale resourc
 In this workshop, EC2 acts as the workload that generates volumes and snapshots.  
 You’ll launch an instance, attach storage, and terminate it to see how leftover snapshots waste money.
 
-![EC2](https://raw.githubusercontent.com/phamr39/ezidev-imagestorage/master/aws-saa-c03/aws-5-gioi-thieu-ve-aws-ec2/Amazon-EC2.jpg)  
+<img src="https://raw.githubusercontent.com/phamr39/ezidev-imagestorage/master/aws-saa-c03/aws-5-gioi-thieu-ve-aws-ec2/Amazon-EC2.jpg" alt="Amazon EC2" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *Amazon EC2 – Virtual Servers in the Cloud*
 
 ---
@@ -28,7 +29,8 @@ You’ll launch an instance, attach storage, and terminate it to see how leftove
 When you launch an instance, a default EBS volume is attached.  
 You’ll create a snapshot of this volume to simulate a backup — and see how it incurs cost if not deleted.
 
-![EBS](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYFsIM-aH7AtvdQrrthx4tfDrJzz1Cj6QvQ&s)  
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYFsIM-aH7AtvdQrrthx4tfDrJzz1Cj6QvQ&s" alt="Amazon EBS" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *Amazon EBS – Block Storage for EC2*
 
 ---
@@ -39,7 +41,8 @@ You’ll create a snapshot of this volume to simulate a backup — and see how i
 They’re incremental, but they accumulate storage costs if forgotten.  
 Our Lambda function finds and deletes stale snapshots to keep your AWS bill under control.
 
-![Snapshots](https://miro.medium.com/v2/resize:fit:1400/1*GVeaZPArzgwRUtpvLbFELA.jpeg)  
+<img src="https://miro.medium.com/v2/resize:fit:1400/1*GVeaZPArzgwRUtpvLbFELA.jpeg" alt="EBS Snapshots" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *EBS Snapshots – Backup & Restore*
 
 ---
@@ -50,7 +53,8 @@ Our Lambda function finds and deletes stale snapshots to keep your AWS bill unde
 In this project, Lambda runs Python code to scan snapshots and EC2 instances, then deletes any snapshot not linked to an active instance.  
 No servers, pure automation.
 
-![Lambda](https://assets.dio.me/6UJHZEQOJZcmQJ-VaiGgwlpgb_91VAJVJKBAVKe_ens/f:webp/q:80/L2FydGljbGVzL2NvdmVyL2JlYjk1NjE1LWRiYzctNGE3Ni04NmFiLTJjODM4ZDNkNzY5Mi5qcGc)  
+<img src="https://assets.dio.me/6UJHZEQOJZcmQJ-VaiGgwlpgb_91VAJVJKBAVKe_ens/f:webp/q:80/L2FydGljbGVzL2NvdmVyL2JlYjk1NjE1LWRiYzctNGE3Ni04NmFiLTJjODM4ZDNkNzY5Mi5qcGc" alt="AWS Lambda" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *AWS Lambda – Serverless Automation*
 
 ---
@@ -66,7 +70,8 @@ You’ll create a policy with permissions to:
 
 Then, you’ll attach this policy to the Lambda execution role to enable safe, controlled automation.
 
-![IAM](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXmo0KadhhREpXe6xuxLi36HB0YLhXWNciVhPKtyyxOmNqs-GdDgjUTzuc9XOT7M7ePe0&usqp=CAU)  
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXmo0KadhhREpXe6xuxLi36HB0YLhXWNciVhPKtyyxOmNqs-GdDgjUTzuc9XOT7M7ePe0&usqp=CAU" alt="AWS IAM" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *AWS IAM – Secure Access Management*
 
 ---
@@ -76,5 +81,6 @@ Then, you’ll attach this policy to the Lambda execution role to enable safe, c
 **CloudWatch** and **EventBridge** help automate and monitor your environment.  
 You can schedule the Lambda to run hourly, daily, or on specific events to ensure stale snapshots are detected and removed continuously.
 
-![CloudWatch](https://razorops.com/images/blog/amazon-cloudwatch.webp)  
+<img src="https://razorops.com/images/blog/amazon-cloudwatch.webp" alt="Amazon CloudWatch" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *Amazon CloudWatch – Monitoring & Scheduling*

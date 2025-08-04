@@ -17,7 +17,8 @@ Trong phần này, bạn sẽ tìm hiểu các dịch vụ AWS chính được d
 Trong workshop này, EC2 đóng vai trò workload để tạo ra volume và snapshot.  
 Bạn sẽ khởi tạo instance, gắn volume, rồi xoá để minh hoạ snapshot thừa gây lãng phí.
 
-![EC2](https://raw.githubusercontent.com/phamr39/ezidev-imagestorage/master/aws-saa-c03/aws-5-gioi-thieu-ve-aws-ec2/Amazon-EC2.jpg)  
+<img src="https://raw.githubusercontent.com/phamr39/ezidev-imagestorage/master/aws-saa-c03/aws-5-gioi-thieu-ve-aws-ec2/Amazon-EC2.jpg" alt="Amazon EC2" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *Amazon EC2 – Máy chủ ảo trên Cloud*
 
 ---
@@ -28,7 +29,8 @@ Bạn sẽ khởi tạo instance, gắn volume, rồi xoá để minh hoạ snap
 Khi bạn khởi tạo EC2, một EBS volume mặc định sẽ được gắn kèm.  
 Bạn sẽ tạo snapshot của volume này để mô phỏng sao lưu — và thấy chi phí phát sinh nếu quên xoá.
 
-![EBS](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYFsIM-aH7AtvdQrrthx4tfDrJzz1Cj6QvQ&s)  
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYFsIM-aH7AtvdQrrthx4tfDrJzz1Cj6QvQ&s" alt="Amazon EBS" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *Amazon EBS – Lưu trữ block cho EC2*
 
 ---
@@ -39,7 +41,8 @@ Bạn sẽ tạo snapshot của volume này để mô phỏng sao lưu — và t
 Chúng hoạt động dạng incremental nhưng vẫn chiếm dung lượng và tốn phí nếu không quản lý tốt.  
 Lambda sẽ tự động tìm và xoá snapshot không còn liên kết EC2 để tối ưu chi phí.
 
-![Snapshots](https://miro.medium.com/v2/resize:fit:1400/1*GVeaZPArzgwRUtpvLbFELA.jpeg)  
+<img src="https://miro.medium.com/v2/resize:fit:1400/1*GVeaZPArzgwRUtpvLbFELA.jpeg" alt="EBS Snapshots" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *EBS Snapshots – Sao lưu & Khôi phục*
 
 ---
@@ -50,7 +53,8 @@ Lambda sẽ tự động tìm và xoá snapshot không còn liên kết EC2 đ�
 Trong workshop, Lambda chạy script Python để quét snapshot & EC2, rồi xoá snapshot không liên kết instance nào.  
 Hoàn toàn không cần máy chủ — tự động hoá 100%.
 
-![Lambda](https://assets.dio.me/6UJHZEQOJZcmQJ-VaiGgwlpgb_91VAJVJKBAVKe_ens/f:webp/q:80/L2FydGljbGVzL2NvdmVyL2JlYjk1NjE1LWRiYzctNGE3Ni04NmFiLTJjODM4ZDNkNzY5Mi5qcGc)  
+<img src="https://assets.dio.me/6UJHZEQOJZcmQJ-VaiGgwlpgb_91VAJVJKBAVKe_ens/f:webp/q:80/L2FydGljbGVzL2NvdmVyL2JlYjk1NjE1LWRiYzctNGE3Ni04NmFiLTJjODM4ZDNkNzY5Mi5qcGc" alt="AWS Lambda" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *AWS Lambda – Tự động hoá Serverless*
 
 ---
@@ -66,7 +70,8 @@ Bạn sẽ tạo policy cấp quyền:
 
 Sau đó gán policy cho role Lambda để đảm bảo quy trình tự động chạy đúng quyền và an toàn.
 
-![IAM](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXmo0KadhhREpXe6xuxLi36HB0YLhXWNciVhPKtyyxOmNqs-GdDgjUTzuc9XOT7M7ePe0&usqp=CAU)  
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXmo0KadhhREpXe6xuxLi36HB0YLhXWNciVhPKtyyxOmNqs-GdDgjUTzuc9XOT7M7ePe0&usqp=CAU" alt="AWS IAM" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *AWS IAM – Quản lý truy cập an toàn*
 
 ---
@@ -76,5 +81,6 @@ Sau đó gán policy cho role Lambda để đảm bảo quy trình tự động 
 **CloudWatch** và **EventBridge** giúp giám sát và tự động hoá.  
 Bạn có thể lên lịch chạy Lambda tự động hàng giờ, hàng ngày hoặc theo sự kiện để môi trường luôn gọn gàng, không còn snapshot dư.
 
-![CloudWatch](https://razorops.com/images/blog/amazon-cloudwatch.webp)  
+<img src="https://razorops.com/images/blog/amazon-cloudwatch.webp" alt="Amazon CloudWatch" style="width:70%;max-width:600px;display:block;margin:auto;" />
+
 *Amazon CloudWatch – Giám sát & Lên lịch*
