@@ -1,5 +1,5 @@
 # Change the default theme to be use when building the site with Hugo
-baseURL = "https://ducanh2004-da.github.io/DucAnhWorkshop/"
+baseURL = "https://nguyenvankhanh2010.github.io/ProjectFJC/"
 languageCode = "en-us"
 theme = "hugo-theme-learn"
 
