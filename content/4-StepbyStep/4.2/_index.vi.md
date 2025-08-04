@@ -27,7 +27,7 @@ Hàm Lambda tự động hóa việc phát hiện và xóa các snapshot không 
      - **Runtime**: Chọn **Python 3.9** hoặc phiên bản Python mới nhất có sẵn.
    - Cuộn xuống và nhấp **Create Function**.
 
-![Tạo Lambda](../images/lambda_creation.png?featherlight=false&width=90pc)
+![Lambda Creation](../images/lambda_creation.png?featherlight=false&width=90pc)
 
 3. **Thêm Mã**:
    - Trong phần **Code**, tìm file `lambda_function.py` mặc định.

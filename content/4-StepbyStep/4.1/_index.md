@@ -5,8 +5,6 @@ weight: 4
 chapter: false
 pre: " <b> 4.1 </b> "
 ---
-
-
 # Step 2.1: Launch EC2 Instance and Create Snapshot
 
 #### Why It Matters
@@ -47,8 +45,8 @@ This step sets up an EC2 instance and creates a snapshot to simulate a common sc
    - Provide a **Name** for the snapshot (e.g., `TestSnapshot`).
    - Scroll down and click **Create Snapshot**.
 
-![Snapshot Creation](../images/CreateSnapshot1.png.png?featherlight=false&width=90pc)
-![Snapshot Creation](../images/CreateSnapshot2.png.png?featherlight=false&width=90pc)
+![Snapshot Creation](../images/CreateSnapshot1.png?featherlight=false&width=90pc)
+![Snapshot Creation](../images/CreateSnapshot2.png?featherlight=false&width=90pc)
 
 
 ---

@@ -46,8 +46,8 @@ Bước này thiết lập một EC2 instance và tạo snapshot để mô phỏ
    - Cung cấp **Tên** cho snapshot (ví dụ: `TestSnapshot`).
    - Cuộn xuống và nhấp **Create Snapshot**.
 
-![Tạo Snapshot](../images/snapshot_creation.png?featherlight=false&width=90pc)
-
+![Snapshot Creation](../images/CreateSnapshot1.png.png?featherlight=false&width=90pc)
+![Snapshot Creation](../images/CreateSnapshot2.png.png?featherlight=false&width=90pc)
 ---
 
 > **Bạn Có Biết Không?** Snapshot được lưu trữ trong Amazon S3 và phát sinh chi phí dựa trên kích thước của chúng. Việc dọn dẹp snapshot không sử dụng thường xuyên có thể giảm đáng kể hóa đơn AWS của bạn.

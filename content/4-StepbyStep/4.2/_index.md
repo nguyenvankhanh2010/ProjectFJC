@@ -20,7 +20,7 @@ The Lambda function automates the detection and deletion of stale snapshots, ens
    - From the AWS Console, click **Services** → **Lambda** to access the Lambda Console.
 
 2. **Create a Lambda Function**:
-   - Click **Create Function**.
+   - Click ****.
    - Select **Author from Scratch**.
    - Configure the function:
      - **Function Name**: `StaleSnapshotCleaner`.
