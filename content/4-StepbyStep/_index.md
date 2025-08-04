@@ -1,7 +1,7 @@
 ---
 title: "Preparation Steps"
 date: 2025-07-03
-weight: 4.0
+weight: 4
 chapter: false
 pre: "<b>4. </b>"
 ---
