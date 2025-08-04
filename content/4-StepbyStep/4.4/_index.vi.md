@@ -27,7 +27,7 @@ Việc chấm dứt EC2 instance khiến snapshot trở thành không sử dụn
    - Trong tab **Code**, nhấp **Test** và chọn sự kiện `TestEvent`.
    - Thực thi kiểm tra và xem đầu ra. Hàm sẽ phát hiện và xóa `TestSnapshot` vì volume liên kết (từ instance đã chấm dứt) không còn tồn tại.
 
-   ![Đầu Ra Xóa Lambda](/images/lambda_deletion_output.png?featherlight=false&width=90pc)
+   ![Đầu Ra Xóa Lambda](../images/lambda_deletion_output.png?featherlight=false&width=90pc)
 
 ---
 

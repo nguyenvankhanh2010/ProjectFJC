@@ -27,7 +27,7 @@ Terminating the EC2 instance makes the snapshot stale (not associated with an ac
    - In the **Code** tab, click **Test** and select the `TestEvent`.
    - Execute the test and check the output. The function should detect and delete the `TestSnapshot` because its associated volume (from the terminated instance) no longer exists.
 
-   ![Lambda Deletion Output](/images/lambda_deletion_output.png?featherlight=false&width=90pc)
+   ![Lambda Deletion Output](../images/lambda_deletion_output.png?featherlight=false&width=90pc)
 
 ---
 

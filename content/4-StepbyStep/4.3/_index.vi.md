@@ -19,7 +19,7 @@ Hàm Lambda cần quyền để mô tả các instance, volume, snapshot EC2 và
 1. **Điều Hướng đến IAM Console**:
    - Từ trang chủ AWS Console, nhấp **Services** → **IAM** để vào Identity and Access Management Console.
 
-   ![Tạo Chính Sách IAM](/images/iam_policy_creation.png?featherlight=false&width=90pc)
+   ![Tạo Chính Sách IAM](../images/iam_policy_creation.png?featherlight=false&width=90pc)
 
 2. **Tạo Chính Sách**:
    - Trong IAM Console, nhấp **Policies** ở thanh bên trái, sau đó nhấp **Create Policy**.

@@ -19,7 +19,7 @@ Bước này tạo một hàm Lambda để tự động phát hiện và xóa c�
 1. **Điều Hướng đến Lambda Console**:
    - Từ trang chủ AWS Console, nhấp **Services** → **Lambda** để vào Lambda Console.
 
-   ![Lambda Console](/images/lambda_console.png?featherlight=false&width=90pc)
+   ![Lambda Console](../images/lambda_console.png?featherlight=false&width=90pc)
 
 2. **Tạo Hàm Lambda**:
    - Trong Lambda Console, nhấp **Functions** ở thanh bên trái.
@@ -31,7 +31,7 @@ Bước này tạo một hàm Lambda để tự động phát hiện và xóa c�
      - **Quyền**: Sử dụng vai trò thực thi mặc định (AWS sẽ tạo vai trò với quyền Lambda cơ bản).
    - Cuộn xuống và nhấp **Create Function**.
 
-   ![Hàm Lambda Đã Tạo](/images/lambda_function_created.png?featherlight=false&width=90pc)
+   ![Hàm Lambda Đã Tạo](../images/lambda_function_created.png?featherlight=false&width=90pc)
 
 3. **Thêm Mã vào Hàm Lambda**:
    - Trong tab **Code** của trang hàm Lambda, tìm file `lambda_function.py` trong trình chỉnh sửa mã.

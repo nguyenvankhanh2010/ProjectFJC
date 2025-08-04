@@ -36,13 +36,13 @@ This step sets up an EC2 instance and creates a snapshot to simulate a common sc
    - Review the settings, then click **Launch Instance**.
    - Wait for the instance to reach the **Running** state and show **2/2 checks passed** in the status column.
 
-   ![EC2 Instance Launch](/images/ec2_launch.png?featherlight=false&width=90pc)
+   ![EC2 Instance Launch](../images/ec2_launch.png?featherlight=false&width=90pc)
 
 4. **Navigate to Volumes**:
    - In the EC2 Console, go to **Elastic Block Store** → **Volumes** in the left sidebar.
    - Identify the default volume attached to `TestInstance` (created automatically during instance launch). It will be listed with the instance ID and have a size of 8 GiB.
 
-   ![Volume Selection](/images/volume_selection.png?featherlight=false&width=90pc)
+   ![Volume Selection](../images/volume_selection.png?featherlight=false&width=90pc)
 
 5. **Create a Snapshot**:
    - Navigate to **Elastic Block Store** → **Snapshots** in the left sidebar.
@@ -53,8 +53,8 @@ This step sets up an EC2 instance and creates a snapshot to simulate a common sc
      - **Description** (optional): Add a description like "Snapshot for TestInstance volume".
    - Click **Create Snapshot** to complete the process.
 
-   ![Snapshot Creation](/images/snapshot_creation.png?featherlight=false&width=90pc)
-   ![Snapshot Confirmation](/images/snapshot_confirmation.png?featherlight=false&width=90pc)
+   ![Snapshot Creation](../images/snapshot_creation.png?featherlight=false&width=90pc)
+   ![Snapshot Confirmation](../images/snapshot_confirmation.png?featherlight=false&width=90pc)
 
 ---
 

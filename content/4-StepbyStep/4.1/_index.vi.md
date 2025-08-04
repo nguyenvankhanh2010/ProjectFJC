@@ -36,13 +36,13 @@ Bước này thiết lập một EC2 instance và tạo snapshot để mô phỏ
    - Xem lại cài đặt, sau đó nhấp **Launch Instance**.
    - Chờ instance đạt trạng thái **Running** và hiển thị **2/2 checks passed** trong cột trạng thái.
 
-   ![Khởi Tạo EC2](/images/ec2_launch.png?featherlight=false&width=90pc)
+   ![Khởi Tạo EC2](../images/ec2_launch.png?featherlight=false&width=90pc)
 
 4. **Điều Hướng đến Volumes**:
    - Trong EC2 Console, vào **Elastic Block Store** → **Volumes** ở thanh bên trái.
    - Xác định volume mặc định được gắn với `TestInstance` (tạo tự động khi khởi tạo instance). Volume này sẽ được liệt kê với ID instance và có dung lượng 8 GiB.
 
-   ![Chọn Volume](/images/volume_selection.png?featherlight=false&width=90pc)
+   ![Chọn Volume](../images/volume_selection.png?featherlight=false&width=90pc)
 
 5. **Tạo Snapshot**:
    - Vào **Elastic Block Store** → **Snapshots** ở thanh bên trái.
@@ -53,8 +53,8 @@ Bước này thiết lập một EC2 instance và tạo snapshot để mô phỏ
      - **Mô Tả** (tùy chọn): Thêm mô tả như "Snapshot cho volume TestInstance".
    - Nhấp **Create Snapshot** để hoàn tất.
 
-   ![Tạo Snapshot](/images/snapshot_creation.png?featherlight=false&width=90pc)
-   ![Xác Nhận Snapshot](/images/snapshot_confirmation.png?featherlight=false&width=90pc)
+   ![Tạo Snapshot](../images/snapshot_creation.png?featherlight=false&width=90pc)
+   ![Xác Nhận Snapshot](../images/snapshot_confirmation.png?featherlight=false&width=90pc)
 
 ---
 

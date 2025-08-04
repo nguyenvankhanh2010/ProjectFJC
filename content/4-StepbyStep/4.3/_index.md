@@ -19,7 +19,7 @@ The Lambda function requires permissions to describe EC2 instances, volumes, and
 1. **Navigate to IAM Console**:
    - From the AWS Console homepage, click **Services** → **IAM** to access the Identity and Access Management Console.
 
-   ![IAM Policy Creation](/images/iam_policy_creation.png?featherlight=false&width=90pc)
+   ![IAM Policy Creation](../images/iam_policy_creation.png?featherlight=false&width=90pc)
 
 2. **Create a Policy**:
    - In the IAM Console, click **Policies** in the left sidebar, then click **Create Policy**.

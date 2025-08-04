@@ -19,7 +19,7 @@ This step creates a Lambda function to automate the detection and deletion of st
 1. **Navigate to Lambda Console**:
    - From the AWS Console homepage, click **Services** → **Lambda** to access the Lambda Console.
 
-   ![Lambda Console](/images/lambda_console.png?featherlight=false&width=90pc)
+   ![Lambda Console](../images/lambda_console.png?featherlight=false&width=90pc)
 
 2. **Create a Lambda Function**:
    - In the Lambda Console, click **Functions** in the left sidebar.
@@ -31,7 +31,7 @@ This step creates a Lambda function to automate the detection and deletion of st
      - **Permissions**: Use the default execution role (AWS will create a role with basic Lambda permissions).
    - Scroll down and click **Create Function**.
 
-   ![Lambda Function Created](/images/lambda_function_created.png?featherlight=false&width=90pc)
+   ![Lambda Function Created](../images/lambda_function_created.png?featherlight=false&width=90pc)
 
 3. **Add Code to the Lambda Function**:
    - In the **Code** tab of the Lambda function page, locate the `lambda_function.py` file in the code editor.
