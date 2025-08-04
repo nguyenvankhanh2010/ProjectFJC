@@ -4,4 +4,5 @@ title: "Efficient AWS Cost Management"
 weight: 1
 chapter: false
 --------------
-![Understanding AWS Cost Management](https://www.prosperops.com/wp-content/uploads/2023/11/Blog-Featured-Image_8-Understanding-AWS-Cost-Management-1.jpg)
+# Quản lý chi phí AWS một cách hiệu quả
+![Understanding AWS Cost Management](https://miro.medium.com/v2/resize:fit:800/1*sQWvAOinWtfTwqrY3QyUqw.png)

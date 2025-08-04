@@ -31,7 +31,7 @@ Các tài nguyên AWS không sử dụng, như snapshot và Elastic IP, có th�
   * Cung cấp **Tên** cho snapshot (ví dụ: `TestSnapshot`).
   * Nhấn **Create Snapshot**.
 
-![Tạo Snapshot](../images/snapshot_creation.png?featherlight=false&width=90pc)
+![Tạo Snapshot](./images/snapshot_creation.png?featherlight=false&width=90pc)
 
 ---
 

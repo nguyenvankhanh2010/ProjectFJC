@@ -31,7 +31,7 @@ Unused AWS resources, such as snapshots and Elastic IPs, can silently increase y
   * Provide a **Name** for the snapshot (e.g., `TestSnapshot`).
   * Click **Create Snapshot**.
 
-![Snapshot Creation](../images/snapshot_creation.png?featherlight=false&width=90pc)
+![Snapshot Creation](./images/snapshot_creation.png?featherlight=false&width=90pc)
 
 ---
 
