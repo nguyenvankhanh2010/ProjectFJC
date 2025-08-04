@@ -1,5 +1,5 @@
 ---
-title: "Phần III: Yểu cầu chuẩn bị"
+title: "Phần III: Yêu cầu chuẩn bị"
 date: 2025-08-04
 weight: 3
 chapter: false
