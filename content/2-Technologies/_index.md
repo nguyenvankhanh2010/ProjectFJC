@@ -1,5 +1,5 @@
 ---
-title: "Section II: Technologies Used"
+title: "2. Technologies Used"
 date: 2025-08-04
 weight: 2
 chapter: false

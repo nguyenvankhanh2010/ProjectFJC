@@ -1,5 +1,5 @@
 ---
-title: "Phần II: Các công nghệ sử dụng"
+title: "2. Các công nghệ sử dụng"
 date: 2025-08-04
 weight: 2
 chapter: false

@@ -1,5 +1,5 @@
 ---
-title: "Phần III: Preparation Required"
+title: "3. Preparation Required"
 date: 2025-08-04
 weight: 3
 chapter: false
