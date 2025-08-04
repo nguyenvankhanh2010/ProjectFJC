@@ -14,47 +14,20 @@ Before running the **Project Management Dashboard** application, you need to pre
 
 ## List of Steps
 
-### ✅ **4.1 – Clone the Source Code**
+### ✅ **4.1 – Launch EC2 Instance and Create Snapshot**
 
-- Use the `git clone` command to download the entire source code from GitHub.
-- Repository: 👉 [https://github.com/DyyyPhatt/project-management](https://github.com/DyyyPhatt/project-management)
 
-### ✅ **4.2 – Install Node.js**
+### ✅ **4.2 – Create Lambda Function**
 
-- Required to run the frontend (Next.js) and backend (Express).
-- Automatically includes the `npm` package manager.
 
-### ✅ **4.3 – Install Visual Studio Code**
+### ✅ **4.3 – Configure IAM Permissions for Lambda**
 
-- Recommended IDE for writing and managing source code.
-- Install extensions like Markdown, JavaScript/TypeScript, Prisma,...
 
-### ✅ **4.4 – Install PostgreSQL**
+### ✅ **4.4 – Test Lambda with Terminated EC2 Instance**
 
-- The primary relational database management system for the application.
-- Stores user information, projects, tasks, teams, permissions,...
 
-### ✅ **4.5 – Install PgAdmin**
+### ✅ **4.5 – Automate with CloudWatch/EventBridge**
 
-- A graphical interface tool for managing PostgreSQL databases.
-- Supports viewing tables, sample data, and writing SQL queries.
-
-### ✅ **4.6 – Install Postman**
-
-- A tool for testing APIs (GET, POST, PUT, DELETE).
-- Allows sending authentication tokens to verify API access.
-
-### ✅ **4.7 – Install AWS CLI**
-
-- A command-line tool for interacting with AWS services like EC2, RDS, S3, Cognito.
-- Used for deploying the backend and managing AWS resources.
-
-### ✅ **4.8 – Install Required Libraries**
-
-- Frontend libraries:
-  - Next.js, Tailwind CSS, MUI Data Grid, Redux Toolkit, RTK Query, React DnD, Recharts, Gantt Chart,...
-- Backend libraries:
-  - Express.js, Prisma ORM, and related tools.
 
 ---
 
