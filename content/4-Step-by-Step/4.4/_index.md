@@ -1,7 +1,11 @@
+---
 title: "Step 2.4: Test Lambda with Terminated EC2 Instance"
-weight: 2.4
+date: 2025-07-07
+weight: 4
 chapter: false
---------------
+pre: " <b> 4.4 </b> "
+---
+
 
 # Step 2.4: Test Lambda with Terminated EC2 Instance
 

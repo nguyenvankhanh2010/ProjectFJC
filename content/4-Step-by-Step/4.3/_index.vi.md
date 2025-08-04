@@ -1,7 +1,11 @@
+---
 title: "Bước 2.3: Cấu Hình Quyền IAM cho Lambda"
-weight: 2.3
+date: 2025-07-07
+weight: 4
 chapter: false
---------------
+pre: " <b> 4.3 </b> "
+---
+
 
 # Bước 2.3: Cấu Hình Quyền IAM cho Lambda
 

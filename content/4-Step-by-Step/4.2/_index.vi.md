@@ -1,7 +1,10 @@
+---
 title: "Bước 2.2: Tạo Hàm Lambda"
-weight: 2.2
+date: 2025-07-07
+weight: 4
 chapter: false
---------------
+pre: " <b> 4.2 </b> "
+---
 
 # Bước 2.2: Tạo Hàm Lambda
 

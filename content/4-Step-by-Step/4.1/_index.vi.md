@@ -1,7 +1,10 @@
+---
 title: "Bước 2.1: Khởi Tạo EC2 Instance và Tạo Snapshot"
-weight: 2.1
+date: 2025-07-07
+weight: 4
 chapter: false
---------------
+pre: " <b> 4.1 </b> "
+---
 
 # Bước 2.1: Khởi Tạo EC2 Instance và Tạo Snapshot
 

@@ -1,8 +1,10 @@
+---
 title: "Bước 2.6: Ghi Chú Bổ Sung và Mở Rộng"
-weight: 2.6
+date: 2025-07-07
+weight: 6
 chapter: false
---------------
-
+pre: " <b> 4.6 </b> "
+---
 # Bước 2.6: Ghi Chú Bổ Sung và Mở Rộng
 
 #### Tại Sao Quan Trọng

@@ -1,7 +1,10 @@
+---
 title: "Bước 2.4: Kiểm Tra Lambda với EC2 Instance Đã Chấm Dứt"
-weight: 2.4
+date: 2025-07-07
+weight: 4
 chapter: false
---------------
+pre: " <b> 4.4 </b> "
+---
 
 # Bước 2.4: Kiểm Tra Lambda với EC2 Instance Đã Chấm Dứt
 

@@ -1,7 +1,11 @@
+---
 title: "Step 2.1: Launch EC2 Instance and Create Snapshot"
-weight: 2.1
+date: 2025-07-07
+weight: 4
 chapter: false
---------------
+pre: " <b> 4.1 </b> "
+---
+
 
 # Step 2.1: Launch EC2 Instance and Create Snapshot
 

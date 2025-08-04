@@ -1,7 +1,10 @@
+---
 title: "Step 2.3: Configure IAM Permissions for Lambda"
-weight: 2.3
+date: 2025-07-07
+weight: 4
 chapter: false
---------------
+pre: " <b> 4.3 </b> "
+---
 
 # Step 2.3: Configure IAM Permissions for Lambda
 

@@ -1,7 +1,10 @@
+---
 title: "Step 2.6: Additional Notes and Extensions"
-weight: 2.6
+date: 2025-07-07
+weight: 6
 chapter: false
---------------
+pre: " <b> 4.6 </b> "
+---
 
 # Step 2.6: Additional Notes and Extensions
 
@@ -42,4 +45,4 @@ def lambda_handler(event, context):
             'message': 'Unused Elastic IPs released',
             'released_ips': released_ips
         })
-    }
+    } 

@@ -1,7 +1,10 @@
+---
 title: "Step 2.2: Create Lambda Function"
-weight: 2.2
+date: 2025-07-07
+weight: 4
 chapter: false
---------------
+pre: " <b> 4.2 </b> "
+---
 
 # Step 2.2: Create Lambda Function
 

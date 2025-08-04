@@ -1,7 +1,10 @@
+---
 title: "Bước 2.5: Tự Động Hóa với CloudWatch/EventBridge"
-weight: 2.5
+date: 2025-07-07
+weight: 5
 chapter: false
---------------
+pre: " <b> 4.5 </b> "
+---
 
 # Bước 2.5: Tự Động Hóa với CloudWatch/EventBridge
 
