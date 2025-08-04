@@ -6,6 +6,12 @@ chapter: false
 
 # 🌟 Introduction
 
+![Understanding AWS Cost Management](https://www.prosperops.com/wp-content/uploads/2023/11/Blog-Featured-Image_8-Understanding-AWS-Cost-Management-1.jpg)
+
+> *An overview of AWS Cost Management — Source: ProsperOps*
+
+---
+
 ## Why this Workshop?
 
 In modern cloud environments, keeping costs under control is essential for any team or organization. One common reason for unexpected AWS charges is stale or forgotten resources — especially EC2 snapshots, Elastic IPs, and unattached volumes that accumulate silently and generate monthly costs.

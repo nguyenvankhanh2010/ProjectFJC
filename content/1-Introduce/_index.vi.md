@@ -6,6 +6,12 @@ chapter: false
 
 # 🌟 Giới thiệu
 
+![Quản lý chi phí AWS](https://www.prosperops.com/wp-content/uploads/2023/11/Blog-Featured-Image_8-Understanding-AWS-Cost-Management-1.jpg)
+
+> *Hình minh hoạ quản lý chi phí AWS — Nguồn: ProsperOps*
+
+---
+
 ## Tại sao cần Workshop này?
 
 Trong môi trường điện toán đám mây hiện đại, kiểm soát chi phí là điều bắt buộc đối với bất kỳ nhóm hay tổ chức nào. Một nguyên nhân phổ biến dẫn đến hóa đơn AWS tăng cao là do các tài nguyên dư thừa — đặc biệt là snapshot của EC2, Elastic IP hoặc volume không còn gắn với máy chủ nhưng vẫn tồn tại, âm thầm tạo chi phí hàng tháng.
