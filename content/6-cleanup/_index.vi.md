@@ -1,6 +1,6 @@
 ---
 
-title: "Phần VI: Dọn Dẹp Tài Nguyên"
+title: "6. Dọn Dẹp Tài Nguyên"
 weight: 6
 chapter: false
 --------------

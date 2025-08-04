@@ -18,7 +18,6 @@ chapter: false
 3. **Tăng Cường Quản Lý Tài Nguyên**:
    - Quy trình tự động hóa với CloudWatch/EventBridge đảm bảo snapshot được dọn dẹp định kỳ mà không cần can thiệp thủ công, giảm nguy cơ tích lũy tài nguyên không sử dụng.
 
-   ![Quy Tắc CloudWatch Đã Tạo]/images/cloudwatch_rule_created.png?featherlight=false&width=90pc)
 
 4. **Bảo Mật và Tuân Thủ**:
    - Chính sách IAM `StaleSnapshotPolicy` được cấu hình theo nguyên tắc quyền hạn tối thiểu, chỉ cấp các quyền cần thiết (`DescribeInstances`, `DescribeVolumes`, `DescribeSnapshots`, `DeleteSnapshot`), tăng cường bảo mật.
@@ -37,7 +36,7 @@ chapter: false
 
 Để tối ưu hóa chi phí AWS hơn nữa, bạn có thể:
 
-1. **Quản Lý Elastic IP**:
+ **Quản Lý Elastic IP**:
    - Tạo một hàm Lambda mới để phát hiện và giải phóng các Elastic IP không gắn kết với instance. Ví dụ mã:
 
 ```python

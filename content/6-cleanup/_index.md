@@ -1,7 +1,5 @@
-
-
 ---
-title: "Section VI: Resource Cleanup"
+title: "6. Resource Cleanup"
 weight: 6
 chapter: false
 ---
