@@ -5,8 +5,6 @@ weight: 6
 chapter: false
 --------------
 
-# Dọn Dẹp Tài Nguyên AWS
-
 #### Tại Sao Quan Trọng
 
 Để lại tài nguyên trên đám mây sau khi hoàn thành lab có thể phát sinh chi phí không mong muốn. Trong bước cuối này, bạn sẽ học cách an toàn loại bỏ tất cả những gì đã tạo—giúp tài khoản AWS của bạn gọn gàng và tiết kiệm chi phí.

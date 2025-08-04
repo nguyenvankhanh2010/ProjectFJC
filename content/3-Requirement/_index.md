@@ -5,8 +5,6 @@ weight: 3
 chapter: false
 ---
 
-# Efficient AWS Cost Management through Stale Resource Detection
-
 #### Why It Matters
 
 Unused AWS resources, such as snapshots and Elastic IPs, can silently increase your AWS bill. This project automates the detection and deletion of stale snapshots using an AWS Lambda function, helping you optimize costs by ensuring only active resources incur charges. The solution can be extended to other resources like unattached Elastic IPs.

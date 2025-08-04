@@ -4,8 +4,6 @@ weight: 6
 chapter: false
 ---
 
-# Cleaning Up Your AWS Resources
-
 #### Why It Matters  
 Leaving cloud resources running after a lab can incur unexpected charges. In this final step, you’ll learn how to safely remove everything you created—keeping your AWS account tidy and cost‑efficient.
 

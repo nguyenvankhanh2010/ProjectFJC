@@ -5,8 +5,6 @@ weight: 3
 chapter: false
 ---
 
-# Quản Lý Chi Phí AWS Hiệu Quả thông qua Phát Hiện Tài Nguyên Không Sử Dụng
-
 #### Tại Sao Quan Trọng
 
 Các tài nguyên AWS không sử dụng, như snapshot và Elastic IP, có thể âm thầm làm tăng hóa đơn AWS của bạn. Dự án này tự động hóa việc phát hiện và xóa các snapshot không sử dụng bằng hàm AWS Lambda, giúp bạn tối ưu hóa chi phí bằng cách đảm bảo chỉ các tài nguyên đang hoạt động mới phát sinh chi phí. Giải pháp này có thể được mở rộng cho các tài nguyên khác như Elastic IP không gắn kết.
