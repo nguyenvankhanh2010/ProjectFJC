@@ -6,8 +6,6 @@ chapter: false
 pre: "<b>4.5 </b>"
 ---
 
-# Step 4.5: Automate with CloudWatch/EventBridge
-
 #### Why It Matters
 
 Automating the Lambda function with CloudWatch/EventBridge ensures regular cleanup of stale snapshots, but frequent invocations may increase costs. This step sets up a schedule to trigger the function periodically.

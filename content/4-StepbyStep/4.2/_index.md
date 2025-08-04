@@ -6,7 +6,6 @@ chapter: false
 pre: "<b>4.2 </b>"
 ---
 
-# Step 4.2: Create Lambda Function
 
 #### Why It Matters
 

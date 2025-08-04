@@ -6,7 +6,6 @@ chapter: false
 pre: "<b>4.3 </b>"
 ---
 
-# Bước 4.3: Cấu Hình Quyền IAM cho Lambda
 
 #### Tại Sao Quan Trọng
 

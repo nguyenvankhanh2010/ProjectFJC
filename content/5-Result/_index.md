@@ -1,98 +1,60 @@
 ---
-
-title: "Section V: PostgreSQL on RDS"
+title: "5. Results achieved"
 weight: 5
 chapter: false
 --------------
 
-# Provisioning PostgreSQL on Amazon RDS
+## Results Achieved
 
-#### Why It Matters
+1. **Automated Snapshot Cleanup**:
+   - The `StaleSnapshotCleaner` Lambda function was successfully implemented and tested, automatically deleting EBS snapshots not linked to active volumes, as shown in the test output.
 
-Using a managed database service like Amazon RDS offloads operational responsibilities—backups, scaling, patching—so you can focus on building application features. In this section, you’ll launch a production‑grade PostgreSQL instance inside your VPC, secure network access, and integrate it with your NestJS backend through Prisma migrations.
+   ![Lambda Deletion Output]/images/lambda_deletion_output.png?featherlight=false&width=90pc)
 
----
+2. **Cost Reduction on AWS**:
+   - EBS snapshots are stored in Amazon S3 and incur costs based on their size. By deleting unused snapshots, you can save on storage costs, especially in AWS accounts with numerous instances and snapshots.
 
-## 1. Prerequisites
+3. **Improved Resource Management**:
+   - The CloudWatch/EventBridge automation ensures snapshots are cleaned up regularly without manual intervention, reducing the risk of accumulating unused resources.
 
-* **VPC**: MyVPC configured across at least two AZs with public and private subnets.
-* **VPC Settings**: DNS resolution and DNS hostnames enabled for the VPC.
+   ![CloudWatch Rule Created]/images/cloudwatch_rule_created.png?featherlight=false&width=90pc)
 
-![Host Fullstack Web A.I](../images/5/5-1.png?featherlight=false&width=90pc)
+4. **Security and Compliance**:
+   - The `StaleSnapshotPolicy` IAM policy follows the principle of least privilege, granting only necessary permissions (`DescribeInstances`, `DescribeVolumes`, `DescribeSnapshots`, `DeleteSnapshot`), enhancing security.
 
-* **Security Groups**: You should already have `MyVPC-sg` for general EC2 access.
+5. **Scalability**:
+   - The solution can be extended to manage other AWS resources, such as Elastic IPs or unattached EBS volumes, for comprehensive cost optimization.
 
-## 2. Create a Database Security Group
+## Specific Benefits
 
-1. Navigate to **EC2 → Security Groups → Create security group**.
-2. **Name**: `RDS-Postgres-sg`
-3. **VPC**: MyVPC
-4. **Inbound rule**:
+- **Cost Savings**: Deleting unused snapshots reduces S3 storage costs, critical in production environments with hundreds of snapshots.
+- **Automation**: The CloudWatch/EventBridge schedule eliminates manual checks, saving time and reducing human error.
+- **Flexibility**: The schedule can be adjusted (hourly, daily, or weekly) to balance Lambda costs and cleanup efficiency.
+- **Reusability**: The Lambda code can be modified to manage other resources, such as Elastic IPs or EBS volumes.
 
-   * **Type**: PostgreSQL
-   * **Port range**: 5432
-   * **Source**: `MyVPC-sg` (or your trusted CIDR/IP range)
-5. **Outbound rules**: leave as default (allow all).
+## Recommendations for Extension
 
-## 3. Launch the RDS Instance
+To further optimize AWS costs, consider:
 
-![Host Fullstack Web A.I](../images/5/5-2.png?featherlight=false&width=90pc)
+1. **Managing Elastic IPs**:
+   - Create a new Lambda function to detect and release unattached Elastic IPs. Example code:
 
-1. Open **Aurora and RDS service → Databases → Create database button**.
-2. **Choose a database creation method**: Stadard create
-2. **Engine options**: PostgreSQL (choose the latest freetier supported version).
-3. **Templates**: Free tier 
-4. **DB instance identifier**: `demo-postgres`
-5. **Credentials**: set a master username (e.g., `admin`) and a secure password.
-6. **DB instance class**: choose `db.t4g.micro`
-7. **Storage**: General Purpose SSD (gp3), allocate 20 GiB or as needed and extend Additional storage configuration then uncheck Enable storage autoscaling
-8. **Connectivity**:
+```python
+import boto3
+import json
 
-   * **VPC**: MyVPC
-   * **Subnet group**: select your public subnets
-   * **Public access**: Yes
-   * **VPC security group**: `RDS-Postgres-sg`
-9. **Additional configuration**:
-
-   * Enable automatic backups (retain 7 days).
-   * Set backup window and maintenance window per your preference.
-10. Click **Create database** and wait until the status shows **Available**.
-
-## 4. Connect and Run Migrations
-
-1. In the RDS console, select **demo-postges** and copy the **Endpoint** (host name).
-2. Open **pgAdmin** or another SQL client and create a new server connection:
-
-   * **Host**: `<your-endpoint>`
-   * **Port**: 5432
-   * **Username**: your master username
-   * **Password**: your master password
-
-![Host Fullstack Web A.I](../images/5/5-3.png?featherlight=false&width=90pc)
-
-- After that we save to connect:
-
-![Host Fullstack Web A.I](../images/5/5-4.png?featherlight=false&width=90pc)
-
-3. In your backend EC2 instance, update the `.env` file at `~/app/.env`:
-
-   ```env
-   DATABASE_URL="postgresql://my_app_role:some_password@<your-endpoint>:5432/my_app"
-   ```
-
-   ![Host Fullstack Web A.I](../images/5/5-5.png?featherlight=false&width=90pc)
-
-4. Navigate to your app folder and run Prisma migrations:
-
-   ```bash
-   cd ~/app
-   npx prisma migrate deploy
-   npx prisma generate
-   ```
-5. Optionally, open Prisma Studio to verify your schema and data:
-
-   ```bash
-   npx prisma studio
-   ```
-
-> **Pro Tip:** Enable automated backups and a 7‑day retention policy. You can also scale storage vertically without downtime as your data footprint grows.
+def lambda_handler(event, context):
+    ec2 = boto3.client('ec2')
+    addresses = ec2.describe_addresses()['Addresses']
+    released_ips = []
+    for address in addresses:
+        if 'InstanceId' not in address:
+            ec2.release_address(AllocationId=address['AllocationId'])
+            released_ips.append(address['AllocationId'])
+    return {
+        'statusCode': 200,
+        'body': json.dumps({
+            'message': 'Unused Elastic IPs released',
+            'released_ips': released_ips
+        })
+    }

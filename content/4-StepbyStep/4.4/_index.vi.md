@@ -6,8 +6,6 @@ chapter: false
 pre: "<b>4.4 </b>"
 ---
 
-# Bước 4.4: Kiểm Tra Lambda với EC2 Instance Đã Chấm Dứt
-
 #### Tại Sao Quan Trọng
 
 Việc chấm dứt EC2 instance khiến snapshot trở thành không sử dụng (không liên kết với volume đang hoạt động), cho phép kiểm tra khả năng phát hiện và xóa snapshot của hàm Lambda.

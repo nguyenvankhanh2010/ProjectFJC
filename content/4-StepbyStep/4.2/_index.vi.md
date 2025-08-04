@@ -6,7 +6,6 @@ chapter: false
 pre: "<b>4.2 </b>"
 ---
 
-# Bước 4.2: Tạo Hàm Lambda
 
 #### Tại Sao Quan Trọng
 

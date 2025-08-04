@@ -6,8 +6,6 @@ chapter: false
 pre: "<b>4.1 </b>"
 ---
 
-# Step 4.1: Launch EC2 Instance and Create Snapshot
-
 #### Why It Matters
 
 This step sets up an EC2 instance and creates a snapshot to simulate a common scenario where snapshots are created for backups but may be forgotten after instance termination, leading to unnecessary costs.

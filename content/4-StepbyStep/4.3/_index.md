@@ -6,7 +6,6 @@ chapter: false
 pre: "<b>4.3 </b>"
 ---
 
-# Step 4.3: Configure IAM Permissions for Lambda
 
 #### Why It Matters
 

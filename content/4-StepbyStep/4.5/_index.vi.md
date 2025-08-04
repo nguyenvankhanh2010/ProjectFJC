@@ -6,8 +6,6 @@ chapter: false
 pre: "<b>4.5 </b>"
 ---
 
-# Bước 4.5: Tự Động Hóa với CloudWatch/EventBridge
-
 #### Tại Sao Quan Trọng
 
 Tự động hóa hàm Lambda bằng CloudWatch/EventBridge đảm bảo dọn dẹp snapshot không sử dụng định kỳ, nhưng các lần gọi thường xuyên có thể tăng chi phí. Bước này thiết lập lịch trình để kích hoạt hàm định kỳ.

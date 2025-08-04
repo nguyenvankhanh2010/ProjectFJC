@@ -6,8 +6,6 @@ chapter: false
 pre: "<b>4.4 </b>"
 ---
 
-# Step 4.4: Test Lambda with Terminated EC2 Instance
-
 #### Why It Matters
 
 Terminating the EC2 instance makes the snapshot stale (not associated with an active volume), allowing you to test the Lambda function’s ability to detect and delete such snapshots.

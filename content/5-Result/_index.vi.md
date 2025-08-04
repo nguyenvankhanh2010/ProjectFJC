@@ -1,98 +1,61 @@
 ---
 
-title: "Phần V: PostgreSQL trên RDS"
+title: "5. Kết quả đạt được"
 weight: 5
 chapter: false
 --------------
 
-# Cấp Phát PostgreSQL trên Amazon RDS
+## Kết Quả Đạt Được
 
-#### Tại Sao Quan Trọng
+1. **Tự Động Hóa Dọn Dẹp Snapshot**:
+   - Hàm Lambda `StaleSnapshotCleaner` đã được triển khai và kiểm tra thành công, tự động xóa các snapshot EBS không liên kết với volume đang hoạt động, như được hiển thị trong đầu ra kiểm tra.
 
-Sử dụng dịch vụ cơ sở dữ liệu quản lý như Amazon RDS giúp bạn giảm tải trách nhiệm vận hành—backup, scale, patch—để bạn tập trung vào phát triển tính năng ứng dụng. Trong phần này, bạn sẽ khởi tạo một instance PostgreSQL production trong VPC, bảo mật kết nối mạng, và tích hợp với backend NestJS thông qua các migration Prisma.
+   ![Đầu Ra Xóa Lambda]/images/lambda_deletion_output.png?featherlight=false&width=90pc)
 
----
+2. **Giảm Chi Phí AWS**:
+   - Snapshot EBS được lưu trữ trên Amazon S3 và phát sinh chi phí dựa trên kích thước. Bằng cách xóa snapshot không sử dụng, bạn có thể tiết kiệm chi phí, đặc biệt trong các tài khoản AWS với nhiều instance và snapshot.
 
-## 1. Yêu Cầu Tiên Quyết
+3. **Tăng Cường Quản Lý Tài Nguyên**:
+   - Quy trình tự động hóa với CloudWatch/EventBridge đảm bảo snapshot được dọn dẹp định kỳ mà không cần can thiệp thủ công, giảm nguy cơ tích lũy tài nguyên không sử dụng.
 
-* **VPC**: MyVPC đã cấu hình ít nhất hai AZ với subnet công cộng và riêng tư.
-* **Cài Đặt VPC**: Đảm bảo DNS resolution và DNS hostnames đã được bật cho VPC.
+   ![Quy Tắc CloudWatch Đã Tạo]/images/cloudwatch_rule_created.png?featherlight=false&width=90pc)
 
-![Host Fullstack Web A.I](../../images/5/5-1.png?featherlight=false\&width=90pc)
+4. **Bảo Mật và Tuân Thủ**:
+   - Chính sách IAM `StaleSnapshotPolicy` được cấu hình theo nguyên tắc quyền hạn tối thiểu, chỉ cấp các quyền cần thiết (`DescribeInstances`, `DescribeVolumes`, `DescribeSnapshots`, `DeleteSnapshot`), tăng cường bảo mật.
 
-* **Security Groups**: Đã có sẵn `MyVPC-sg` cho truy cập EC2 chung.
+5. **Khả Năng Mở Rộng**:
+   - Giải pháp có thể được mở rộng để quản lý các tài nguyên AWS khác, như Elastic IP hoặc volume EBS không gắn kết, giúp tối ưu hóa chi phí toàn diện.
 
-## 2. Tạo Security Group cho Database
+## Lợi Ích Cụ Thể
 
-1. Vào **EC2 → Security Groups → Create security group**.
-2. **Name**: `RDS-Postgres-sg`
-3. **VPC**: MyVPC
-4. **Inbound rule**:
+- **Tiết kiệm chi phí**: Xóa snapshot không sử dụng giúp giảm chi phí lưu trữ S3, đặc biệt quan trọng trong môi trường sản xuất với hàng trăm snapshot.
+- **Tự động hóa**: Lịch trình CloudWatch/EventBridge loại bỏ nhu cầu kiểm tra thủ công, tiết kiệm thời gian và giảm lỗi con người.
+- **Tính linh hoạt**: Lịch trình có thể được điều chỉnh (hàng giờ, hàng ngày, hoặc hàng tuần) để cân bằng giữa chi phí Lambda và hiệu quả dọn dẹp.
+- **Khả năng tái sử dụng**: Mã Lambda có thể được sửa đổi để quản lý các tài nguyên khác, như Elastic IP hoặc volume EBS.
 
-   * **Type**: PostgreSQL
-   * **Port range**: 5432
-   * **Source**: `MyVPC-sg` (hoặc CIDR/IP đáng tin cậy)
-5. **Outbound rules**: giữ mặc định (cho phép tất cả).
+## Đề Xuất Mở Rộng
 
-## 3. Khởi Tạo Instance RDS
+Để tối ưu hóa chi phí AWS hơn nữa, bạn có thể:
 
-![Host Fullstack Web A.I](../../images/5/5-2.png?featherlight=false\&width=90pc)
+1. **Quản Lý Elastic IP**:
+   - Tạo một hàm Lambda mới để phát hiện và giải phóng các Elastic IP không gắn kết với instance. Ví dụ mã:
 
-1. Vào **RDS → Databases → Create database**.
-2. **Engine options**: PostgreSQL (chọn phiên bản mới nhất được hỗ trợ).
-3. **Templates**: Free tier (nếu đủ điều kiện) hoặc Production.
-4. **DB instance identifier**: `LabPostgres`
-5. **Credentials**: đặt master username (ví dụ `admin`) và mật khẩu an toàn.
-6. **DB instance class**: chọn `db.t3.micro` hoặc lớn hơn.
-7. **Storage**: General Purpose SSD (gp3), cấp phát 20 GiB hoặc theo nhu cầu.
-8. **Connectivity**:
+```python
+import boto3
+import json
 
-   * **VPC**: MyVPC
-   * **Subnet group**: chọn các private subnet
-   * **Public access**: No (giữ database private)
-   * **VPC security group**: `RDS-Postgres-sg`
-9. **Additional configuration**:
-
-   * Enable automatic backups (giữ 7 ngày)
-   * Thiết lập backup window và maintenance window theo ý muốn.
-10. Nhấn **Create database** và chờ trạng thái chuyển sang **Available**.
-
-## 4. Kết Nối & Chạy Migration
-
-1. Trong console RDS, chọn **LabPostgres** và copy **Endpoint** (hostname).
-2. Mở **pgAdmin** hoặc client SQL khác và tạo kết nối server mới:
-
-   * **Host**: `<your-endpoint>`
-   * **Port**: 5432
-   * **Username**: master username
-   * **Password**: master password
-
-![Host Fullstack Web A.I](../../images/5/5-3.png?featherlight=false\&width=90pc)
-
-* Lưu cấu hình để kết nối:
-
-![Host Fullstack Web A.I](../../images/5/5-4.png?featherlight=false\&width=90pc)
-
-3. Trên EC2 backend, cập nhật file `.env` tại `~/app/.env`:
-
-   ```env
-   DATABASE_URL="postgresql://my_app_role:some_password@<your-endpoint>:5432/my_app"
-   ```
-
-   ![Host Fullstack Web A.I](../../images/5/5-5.png?featherlight=false\&width=90pc)
-
-4. Vào thư mục ứng dụng và chạy Prisma migrations:
-
-   ```bash
-   cd ~/app
-   npx prisma migrate deploy
-   npx prisma generate
-   ```
-
-5. (Tuỳ chọn) Mở Prisma Studio để kiểm tra schema và dữ liệu:
-
-   ```bash
-   npx prisma studio
-   ```
-
-> **Mẹo**: Bật tự động backup với chính sách giữ 7 ngày. Bạn cũng có thể scale storage theo chiều dọc mà không downtime khi dữ liệu tăng lên.
+def lambda_handler(event, context):
+    ec2 = boto3.client('ec2')
+    addresses = ec2.describe_addresses()['Addresses']
+    released_ips = []
+    for address in addresses:
+        if 'InstanceId' not in address:
+            ec2.release_address(AllocationId=address['AllocationId'])
+            released_ips.append(address['AllocationId'])
+    return {
+        'statusCode': 200,
+        'body': json.dumps({
+            'message': 'Đã giải phóng Elastic IP không sử dụng',
+            'released_ips': released_ips
+        })
+    }

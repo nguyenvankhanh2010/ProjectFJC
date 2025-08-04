@@ -6,7 +6,6 @@ chapter: false
 pre: "<b>4.1 </b>"
 ---
 
-# Bước 4.1: Khởi Tạo EC2 Instance và Tạo Snapshot
 
 #### Tại Sao Quan Trọng
 
