@@ -1,69 +1,80 @@
 ---
 title: "Phần II: Các công nghệ sử dụng"
+date: 2025-08-04
 weight: 2
 chapter: false
 ---
 
-# ⚙️ Các công nghệ sử dụng
+# ⚙️ Phần II: Các công nghệ sử dụng
 
-Hiểu rõ các dịch vụ AWS cốt lõi sẽ giúp bạn dễ dàng theo dõi và tuỳ chỉnh workshop này. Dưới đây là chi tiết từng thành phần chính.
-
----
-
-## 2.1 AWS EC2
-
-**Amazon Elastic Compute Cloud (EC2)** cung cấp khả năng tính toán linh hoạt trên cloud.  
-Trong workshop này, chúng ta sẽ:
-- Tạo một instance làm workload mẫu.
-- Gắn EBS volume để lưu trữ dữ liệu.
-- Xoá instance sau để mô phỏng tài nguyên bị bỏ quên.
+Trong phần này, bạn sẽ tìm hiểu các dịch vụ AWS chính được dùng trong giải pháp phát hiện tài nguyên thừa. Mỗi dịch vụ đều có vai trò riêng giúp quản lý chi phí lưu trữ hiệu quả.
 
 ---
 
-## 2.2 EBS (Elastic Block Store)
+## <b> 2.1 </b> AWS EC2
 
-**Elastic Block Store (EBS)** là dịch vụ lưu trữ dạng block cho EC2.
-Trong workshop:
-- Mỗi EC2 instance sẽ có ít nhất 1 volume EBS mặc định.
-- Bạn sẽ tạo snapshot để sao lưu volume này.
-- Các snapshot dư sau khi terminate là mục tiêu cần dọn dẹp để tiết kiệm chi phí.
+**Amazon Elastic Compute Cloud (EC2)** là dịch vụ máy chủ ảo linh hoạt.  
+Trong workshop này, EC2 đóng vai trò workload để tạo ra volume và snapshot.  
+Bạn sẽ khởi tạo instance, gắn volume, rồi xoá để minh hoạ snapshot thừa gây lãng phí.
 
----
-
-## 2.3 Snapshots
-
-**Snapshots** là bản sao lưu tại một thời điểm của EBS volume.
-- Snapshot hoạt động theo kiểu incremental (bổ sung), vẫn chiếm dung lượng.
-- Nếu quên xóa, chúng vẫn tính phí lưu trữ hàng tháng.
-- Lambda function của chúng ta sẽ tự tìm và xoá snapshot dư.
+![EC2](https://raw.githubusercontent.com/phamr39/ezidev-imagestorage/master/aws-saa-c03/aws-5-gioi-thieu-ve-aws-ec2/Amazon-EC2.jpg)  
+*Amazon EC2 – Máy chủ ảo trên Cloud*
 
 ---
 
-## 2.4 AWS Lambda
+## <b> 2.2 </b> EBS (Elastic Block Store)
 
-**AWS Lambda** là dịch vụ serverless chạy code mà không cần quản lý máy chủ.
-Trong workshop:
-- Lambda chạy Python script kiểm tra tất cả EC2 instance & snapshot.
-- Nếu phát hiện snapshot không còn liên kết instance, nó sẽ xoá snapshot đó.
-- Bạn có thể chạy thủ công hoặc đặt lịch tự động.
+**Amazon EBS** cung cấp lưu trữ dạng block cho EC2.  
+Khi bạn khởi tạo EC2, một EBS volume mặc định sẽ được gắn kèm.  
+Bạn sẽ tạo snapshot của volume này để mô phỏng sao lưu — và thấy chi phí phát sinh nếu quên xoá.
 
----
-
-## 2.5 IAM (Identity and Access Management)
-
-**IAM** giúp quản lý truy cập dịch vụ AWS một cách an toàn.
-- Chúng ta sẽ tạo IAM Policy cấp quyền: `DescribeInstances`, `DescribeVolumes`, `DescribeSnapshots`, `DeleteSnapshot`.
-- Policy này được gán cho role Lambda để Lambda có quyền đọc & xoá snapshot.
+![EBS](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYFsIM-aH7AtvdQrrthx4tfDrJzz1Cj6QvQ&s)  
+*Amazon EBS – Lưu trữ block cho EC2*
 
 ---
 
-## 2.6 CloudWatch / EventBridge
+## <b> 2.3 </b> Snapshots
 
-**CloudWatch** & **EventBridge** là dịch vụ giám sát & kích hoạt sự kiện.
-- Trong workshop, chúng ta sẽ dùng để lên lịch chạy Lambda tự động.
-- Ví dụ: chạy mỗi giờ, mỗi ngày hoặc mỗi tuần.
-- Lưu ý: nếu chạy thường xuyên, chi phí Lambda có thể tăng.
+**Snapshots** là bản sao lưu tại một thời điểm của volume EBS.  
+Chúng hoạt động dạng incremental nhưng vẫn chiếm dung lượng và tốn phí nếu không quản lý tốt.  
+Lambda sẽ tự động tìm và xoá snapshot không còn liên kết EC2 để tối ưu chi phí.
+
+![Snapshots](https://miro.medium.com/v2/resize:fit:1400/1*GVeaZPArzgwRUtpvLbFELA.jpeg)  
+*EBS Snapshots – Sao lưu & Khôi phục*
 
 ---
 
-> **Mẹo:** Thành thạo các dịch vụ này sẽ giúp bạn tự động hoá và kiểm soát chi phí AWS hiệu quả hơn.
+## <b> 2.4 </b> AWS Lambda
+
+**AWS Lambda** cho phép chạy code serverless.  
+Trong workshop, Lambda chạy script Python để quét snapshot & EC2, rồi xoá snapshot không liên kết instance nào.  
+Hoàn toàn không cần máy chủ — tự động hoá 100%.
+
+![Lambda](https://assets.dio.me/6UJHZEQOJZcmQJ-VaiGgwlpgb_91VAJVJKBAVKe_ens/f:webp/q:80/L2FydGljbGVzL2NvdmVyL2JlYjk1NjE1LWRiYzctNGE3Ni04NmFiLTJjODM4ZDNkNzY5Mi5qcGc)  
+*AWS Lambda – Tự động hoá Serverless*
+
+---
+
+## <b> 2.5 </b> IAM (Identity and Access Management)
+
+**IAM** quản lý quyền truy cập dịch vụ AWS.  
+Bạn sẽ tạo policy cấp quyền:
+- `DescribeInstances`
+- `DescribeVolumes`
+- `DescribeSnapshots`
+- `DeleteSnapshot`
+
+Sau đó gán policy cho role Lambda để đảm bảo quy trình tự động chạy đúng quyền và an toàn.
+
+![IAM](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXmo0KadhhREpXe6xuxLi36HB0YLhXWNciVhPKtyyxOmNqs-GdDgjUTzuc9XOT7M7ePe0&usqp=CAU)  
+*AWS IAM – Quản lý truy cập an toàn*
+
+---
+
+## <b> 2.6 </b> CloudWatch / EventBridge
+
+**CloudWatch** và **EventBridge** giúp giám sát và tự động hoá.  
+Bạn có thể lên lịch chạy Lambda tự động hàng giờ, hàng ngày hoặc theo sự kiện để môi trường luôn gọn gàng, không còn snapshot dư.
+
+![CloudWatch](https://razorops.com/images/blog/amazon-cloudwatch.webp)  
+*Amazon CloudWatch – Giám sát & Lên lịch*

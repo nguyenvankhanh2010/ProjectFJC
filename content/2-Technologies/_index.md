@@ -1,69 +1,80 @@
 ---
 title: "Section II: Technologies Used"
+date: 2025-08-04
 weight: 2
 chapter: false
 ---
 
-# ⚙️ Technologies Used
+# ⚙️ Section II: Technologies Used
 
-A good understanding of the key AWS services involved will help you follow and customize this workshop effectively. Here’s a breakdown of each core component.
-
----
-
-## 2.1 AWS EC2
-
-**Amazon Elastic Compute Cloud (EC2)** provides scalable compute capacity in the cloud.  
-In this workshop, we use EC2 to:
-- Launch an instance as a sample workload.
-- Attach an EBS volume to store data.
-- Terminate the instance later to simulate an abandoned resource.
+In this section, you’ll explore each AWS service involved in the stale resource detection solution. Each plays a specific role in managing storage costs efficiently.
 
 ---
 
-## 2.2 EBS (Elastic Block Store)
+## <b> 2.1 </b> AWS EC2
 
-**Elastic Block Store (EBS)** provides block-level storage for EC2 instances.
-In this workshop:
-- Each EC2 instance automatically gets at least one EBS volume.
-- You will create snapshots of this volume for backup.
-- Unused snapshots after termination are the main cost-saving target.
+**Amazon Elastic Compute Cloud (EC2)** provides scalable virtual servers.  
+In this workshop, EC2 acts as the workload that generates volumes and snapshots.  
+You’ll launch an instance, attach storage, and terminate it to see how leftover snapshots waste money.
 
----
-
-## 2.3 Snapshots
-
-**Snapshots** are point-in-time backups of EBS volumes.
-- They are incremental but occupy storage.
-- If you forget to delete them, they keep incurring costs.
-- Our Lambda function will find and delete stale snapshots.
+![EC2](https://raw.githubusercontent.com/phamr39/ezidev-imagestorage/master/aws-saa-c03/aws-5-gioi-thieu-ve-aws-ec2/Amazon-EC2.jpg)  
+*Amazon EC2 – Virtual Servers in the Cloud*
 
 ---
 
-## 2.4 AWS Lambda
+## <b> 2.2 </b> EBS (Elastic Block Store)
 
-**AWS Lambda** is a serverless compute service that runs code without provisioning servers.
-In this workshop:
-- Lambda runs Python code that checks all your EC2 instances and EBS snapshots.
-- If it finds a snapshot not linked to any active instance, it deletes it.
-- You can run it manually or schedule it.
+**Amazon EBS** provides block-level storage for EC2 instances.  
+When you launch an instance, a default EBS volume is attached.  
+You’ll create a snapshot of this volume to simulate a backup — and see how it incurs cost if not deleted.
 
----
-
-## 2.5 IAM (Identity and Access Management)
-
-**IAM** helps you manage access to AWS services securely.
-- We will create an IAM Policy with permissions: `DescribeInstances`, `DescribeVolumes`, `DescribeSnapshots`, and `DeleteSnapshot`.
-- We will attach this policy to the Lambda execution role so it can read & delete resources.
+![EBS](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYFsIM-aH7AtvdQrrthx4tfDrJzz1Cj6QvQ&s)  
+*Amazon EBS – Block Storage for EC2*
 
 ---
 
-## 2.6 CloudWatch / EventBridge
+## <b> 2.3 </b> Snapshots
 
-**CloudWatch** and **EventBridge** are AWS monitoring and event services.
-- In this workshop, they are used to schedule and trigger the Lambda function automatically.
-- For example, you can set it to run every hour, day, or week.
-- Be mindful: frequent execution may increase Lambda charges.
+**Snapshots** are point-in-time backups of EBS volumes.  
+They’re incremental, but they accumulate storage costs if forgotten.  
+Our Lambda function finds and deletes stale snapshots to keep your AWS bill under control.
+
+![Snapshots](https://miro.medium.com/v2/resize:fit:1400/1*GVeaZPArzgwRUtpvLbFELA.jpeg)  
+*EBS Snapshots – Backup & Restore*
 
 ---
 
-> **Tip:** Mastering these services makes you more effective at managing cost automation in AWS.
+## <b> 2.4 </b> AWS Lambda
+
+**AWS Lambda** lets you run serverless code.  
+In this project, Lambda runs Python code to scan snapshots and EC2 instances, then deletes any snapshot not linked to an active instance.  
+No servers, pure automation.
+
+![Lambda](https://assets.dio.me/6UJHZEQOJZcmQJ-VaiGgwlpgb_91VAJVJKBAVKe_ens/f:webp/q:80/L2FydGljbGVzL2NvdmVyL2JlYjk1NjE1LWRiYzctNGE3Ni04NmFiLTJjODM4ZDNkNzY5Mi5qcGc)  
+*AWS Lambda – Serverless Automation*
+
+---
+
+## <b> 2.5 </b> IAM (Identity and Access Management)
+
+**IAM** controls who can do what in your AWS account.  
+You’ll create a policy with permissions to:
+- `DescribeInstances`
+- `DescribeVolumes`
+- `DescribeSnapshots`
+- `DeleteSnapshot`
+
+Then, you’ll attach this policy to the Lambda execution role to enable safe, controlled automation.
+
+![IAM](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXmo0KadhhREpXe6xuxLi36HB0YLhXWNciVhPKtyyxOmNqs-GdDgjUTzuc9XOT7M7ePe0&usqp=CAU)  
+*AWS IAM – Secure Access Management*
+
+---
+
+## <b> 2.6 </b> CloudWatch / EventBridge
+
+**CloudWatch** and **EventBridge** help automate and monitor your environment.  
+You can schedule the Lambda to run hourly, daily, or on specific events to ensure stale snapshots are detected and removed continuously.
+
+![CloudWatch](https://razorops.com/images/blog/amazon-cloudwatch.webp)  
+*Amazon CloudWatch – Monitoring & Scheduling*
