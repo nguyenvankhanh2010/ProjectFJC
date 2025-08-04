@@ -37,7 +37,7 @@ This step sets up an EC2 instance and creates a snapshot to simulate a common sc
    - Click **Launch Instance**.
    - Wait for the instance to show **2/2 checks passed** in the status.
 
-![EC2 Instance Launch](../images/4/ec2_launch.png?featherlight=false&width=90pc)
+![Host Fullstack Web A.I](../images/5/5-1.png?featherlight=false&width=90pc)
 
 4. **Create a Snapshot**:
    - Navigate to **Elastic Block Store** → **Volumes** in the EC2 Console.
