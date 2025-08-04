@@ -1,7 +1,9 @@
-title: "Quản Lý Chi Phí AWS Hiệu Quả thông qua Phát Hiện Tài Nguyên Không Sử Dụng"
+---
+title: "Phần III: Các công nghệ sử dụng"
+date: 2025-08-04
 weight: 3
 chapter: false
---------------
+---
 
 # Quản Lý Chi Phí AWS Hiệu Quả thông qua Phát Hiện Tài Nguyên Không Sử Dụng
 

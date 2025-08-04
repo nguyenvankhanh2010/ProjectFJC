@@ -1,7 +1,9 @@
-title: "Efficient AWS Cost Management through Stale Resource Detection"
+---
+title: "Phần III: Các công nghệ sử dụng"
+date: 2025-08-04
 weight: 3
 chapter: false
---------------
+---
 
 # Efficient AWS Cost Management through Stale Resource Detection
 
