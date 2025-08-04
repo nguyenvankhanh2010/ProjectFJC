@@ -4,8 +4,6 @@ weight: 1
 chapter: false
 ---
 
-# 🌟 Giới thiệu
-
 ![Quản lý chi phí AWS](https://www.prosperops.com/wp-content/uploads/2023/11/Blog-Featured-Image_8-Understanding-AWS-Cost-Management-1.jpg)
 
 > *Hình minh hoạ quản lý chi phí AWS — Nguồn: ProsperOps*

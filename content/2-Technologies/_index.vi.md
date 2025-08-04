@@ -5,8 +5,6 @@ weight: 2
 chapter: false
 ---
 
-# ⚙️ Phần II: Các công nghệ sử dụng
-
 Trong phần này, bạn sẽ tìm hiểu các dịch vụ AWS chính được dùng trong giải pháp phát hiện tài nguyên thừa. Mỗi dịch vụ đều có vai trò riêng giúp quản lý chi phí lưu trữ hiệu quả.
 
 ---

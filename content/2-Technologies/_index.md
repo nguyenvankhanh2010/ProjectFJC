@@ -5,8 +5,6 @@ weight: 2
 chapter: false
 ---
 
-# ⚙️ Section II: Technologies Used
-
 In this section, you’ll explore each AWS service involved in the stale resource detection solution. Each plays a specific role in managing storage costs efficiently.
 
 ---
