@@ -5,39 +5,41 @@ weight: 5
 chapter: false
 --------------
 
-## Kết Quả Đạt Được
+## Results Achieved
 
-1. **Tự Động Hóa Dọn Dẹp Snapshot**:
-   - Hàm Lambda `StaleSnapshotCleaner` đã được triển khai và kiểm tra thành công, tự động xóa các snapshot EBS không liên kết với volume đang hoạt động, như được hiển thị trong đầu ra kiểm tra.
+1. **System Architecture for Automation**:
+   - The system is designed to automate EBS snapshot management using AWS services like EC2, Lambda, CloudWatch/EventBridge, IAM, and S3. The diagram below illustrates how these components interact to detect and delete unused snapshots, ensuring cost efficiency.
 
-   ![Đầu Ra Xóa Lambda]/images/lambda_deletion_output.png?featherlight=false&width=90pc)
+   ![Kiến Trúc Hệ Thống](./images/system_architecture.png?featherlight=false&width=90pc)
 
-2. **Giảm Chi Phí AWS**:
-   - Snapshot EBS được lưu trữ trên Amazon S3 và phát sinh chi phí dựa trên kích thước. Bằng cách xóa snapshot không sử dụng, bạn có thể tiết kiệm chi phí, đặc biệt trong các tài khoản AWS với nhiều instance và snapshot.
+2. **Automated Snapshot Cleanup**:
+   - The `StaleSnapshotCleaner` Lambda function was successfully implemented and tested, automatically deleting EBS snapshots not linked to active volumes, as shown in the test output.
 
-3. **Tăng Cường Quản Lý Tài Nguyên**:
-   - Quy trình tự động hóa với CloudWatch/EventBridge đảm bảo snapshot được dọn dẹp định kỳ mà không cần can thiệp thủ công, giảm nguy cơ tích lũy tài nguyên không sử dụng.
+3. **Cost Reduction on AWS**:
+   - EBS snapshots are stored in Amazon S3 and incur costs based on their size. By deleting unused snapshots, you can save on storage costs, especially in AWS accounts with numerous instances and snapshots.
 
+4. **Improved Resource Management**:
+   - The CloudWatch/EventBridge automation ensures snapshots are cleaned up regularly without manual intervention, reducing the risk of accumulating unused resources.
 
-4. **Bảo Mật và Tuân Thủ**:
-   - Chính sách IAM `StaleSnapshotPolicy` được cấu hình theo nguyên tắc quyền hạn tối thiểu, chỉ cấp các quyền cần thiết (`DescribeInstances`, `DescribeVolumes`, `DescribeSnapshots`, `DeleteSnapshot`), tăng cường bảo mật.
+5. **Security and Compliance**:
+   - The `StaleSnapshotPolicy` IAM policy follows the principle of least privilege, granting only necessary permissions (`DescribeInstances`, `DescribeVolumes`, `DescribeSnapshots`, `DeleteSnapshot`), enhancing security.
 
-5. **Khả Năng Mở Rộng**:
-   - Giải pháp có thể được mở rộng để quản lý các tài nguyên AWS khác, như Elastic IP hoặc volume EBS không gắn kết, giúp tối ưu hóa chi phí toàn diện.
+6. **Scalability**:
+   - The solution can be extended to manage other AWS resources, such as Elastic IPs or unattached EBS volumes, for comprehensive cost optimization.
 
-## Lợi Ích Cụ Thể
+## Specific Benefits
 
-- **Tiết kiệm chi phí**: Xóa snapshot không sử dụng giúp giảm chi phí lưu trữ S3, đặc biệt quan trọng trong môi trường sản xuất với hàng trăm snapshot.
-- **Tự động hóa**: Lịch trình CloudWatch/EventBridge loại bỏ nhu cầu kiểm tra thủ công, tiết kiệm thời gian và giảm lỗi con người.
-- **Tính linh hoạt**: Lịch trình có thể được điều chỉnh (hàng giờ, hàng ngày, hoặc hàng tuần) để cân bằng giữa chi phí Lambda và hiệu quả dọn dẹp.
-- **Khả năng tái sử dụng**: Mã Lambda có thể được sửa đổi để quản lý các tài nguyên khác, như Elastic IP hoặc volume EBS.
+- **Cost Savings**: Deleting unused snapshots reduces S3 storage costs, critical in production environments with hundreds of snapshots.
+- **Automation**: The CloudWatch/EventBridge schedule eliminates manual checks, saving time and reducing human error.
+- **Flexibility**: The schedule can be adjusted (hourly, daily, or weekly) to balance Lambda costs and cleanup efficiency.
+- **Reusability**: The Lambda code can be modified to manage other resources, such as Elastic IPs or EBS volumes.
 
-## Đề Xuất Mở Rộng
+## Recommendations for Extension
 
-Để tối ưu hóa chi phí AWS hơn nữa, bạn có thể:
+To further optimize AWS costs, consider:
 
- **Quản Lý Elastic IP**:
-   - Tạo một hàm Lambda mới để phát hiện và giải phóng các Elastic IP không gắn kết với instance. Ví dụ mã:
+1. **Managing Elastic IPs**:
+   - Create a new Lambda function to detect and release unattached Elastic IPs. Example code:
 
 ```python
 import boto3
@@ -54,7 +56,7 @@ def lambda_handler(event, context):
     return {
         'statusCode': 200,
         'body': json.dumps({
-            'message': 'Đã giải phóng Elastic IP không sử dụng',
+            'message': 'Unused Elastic IPs released',
             'released_ips': released_ips
         })
     }
