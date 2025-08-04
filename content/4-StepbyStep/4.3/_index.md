@@ -1,26 +1,28 @@
 ---
-title: "Step 2.3: Configure IAM Permissions for Lambda"
+title: "Step 4.3: Configure IAM Permissions for Lambda"
 date: 2025-07-07
-weight: 4
+weight: 4.3
 chapter: false
-pre: " <b> 4.3 </b> "
+pre: "<b>4.3 </b>"
 ---
 
-# Step 2.3: Configure IAM Permissions for Lambda
+# Step 4.3: Configure IAM Permissions for Lambda
 
 #### Why It Matters
 
-The Lambda function requires specific permissions to describe EC2 instances, volumes, and snapshots, and to delete stale snapshots. This step ensures the function has the necessary IAM policy to perform these actions.
+The Lambda function requires permissions to describe EC2 instances, volumes, and snapshots, and to delete snapshots. This step creates and attaches an IAM policy to grant these permissions.
 
 ---
 
 ## Instructions
 
 1. **Navigate to IAM Console**:
-   - From the AWS Console, click **Services** → **IAM** to access the Identity and Access Management Console.
+   - From the AWS Console homepage, click **Services** → **IAM** to access the Identity and Access Management Console.
+
+   ![IAM Policy Creation](/images/iam_policy_creation.png?featherlight=false&width=90pc)
 
 2. **Create a Policy**:
-   - Go to **Policies** → Click **Create Policy**.
+   - In the IAM Console, click **Policies** in the left sidebar, then click **Create Policy**.
    - Select the **JSON** tab and paste the following policy:
 
 ```json

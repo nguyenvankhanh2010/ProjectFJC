@@ -1,37 +1,41 @@
 ---
-title: "Step 2.2: Create Lambda Function"
+title: "Step 4.2: Create Lambda Function"
 date: 2025-07-07
-weight: 4
+weight: 4.2
 chapter: false
-pre: " <b> 4.2 </b> "
+pre: "<b>4.2 </b>"
 ---
 
-# Step 2.2: Create Lambda Function
+# Step 4.2: Create Lambda Function
 
 #### Why It Matters
 
-The Lambda function automates the detection and deletion of stale snapshots, ensuring that snapshots not associated with active volumes are removed to save costs.
+This step creates a Lambda function to automate the detection and deletion of stale EBS snapshots, reducing costs by removing snapshots not associated with active volumes.
 
 ---
 
 ## Instructions
 
 1. **Navigate to Lambda Console**:
-   - From the AWS Console, click **Services** → **Lambda** to access the Lambda Console.
+   - From the AWS Console homepage, click **Services** → **Lambda** to access the Lambda Console.
+
+   ![Lambda Console](/images/lambda_console.png?featherlight=false&width=90pc)
 
 2. **Create a Lambda Function**:
-   - Click ****.
-   - Select **Author from Scratch**.
-   - Configure the function:
-     - **Function Name**: `StaleSnapshotCleaner`.
-     - **Runtime**: Select **Python 3.9** or the latest available Python version.
+   - In the Lambda Console, click **Functions** in the left sidebar.
+   - Click the **Create Function** button.
+   - Select **Author from Scratch** and configure:
+     - **Function Name**: `StaleSnapshotCleaner`
+     - **Runtime**: Choose **Python 3.9** or the latest available Python version.
+     - **Architecture**: Select `x86_64` (default).
+     - **Permissions**: Use the default execution role (AWS will create a role with basic Lambda permissions).
    - Scroll down and click **Create Function**.
 
-![Lambda Creation](../images/lambda_creation.png?featherlight=false&width=90pc)
+   ![Lambda Function Created](/images/lambda_function_created.png?featherlight=false&width=90pc)
 
-3. **Add Code**:
-   - In the **Code** section, locate the default `lambda_function.py`.
-   - Clear the existing code and replace it with the following:
+3. **Add Code to the Lambda Function**:
+   - In the **Code** tab of the Lambda function page, locate the `lambda_function.py` file in the code editor.
+   - Clear the existing code and replace it with the following Python script to identify and delete stale snapshots:
 
 ```python
 import boto3
@@ -39,22 +43,14 @@ import json
 
 def lambda_handler(event, context):
     ec2 = boto3.client('ec2')
-    
-    # Get all snapshots owned by the account
     snapshots = ec2.describe_snapshots(OwnerIds=['self'])['Snapshots']
-    
-    # Get all active volumes
     volumes = ec2.describe_volumes()['Volumes']
     volume_ids = [volume['VolumeId'] for volume in volumes]
-    
     deleted_snapshots = []
-    
-    # Check for snapshots not linked to active volumes
     for snapshot in snapshots:
         if snapshot['VolumeId'] not in volume_ids:
             ec2.delete_snapshot(SnapshotId=snapshot['SnapshotId'])
             deleted_snapshots.append(snapshot['SnapshotId'])
-    
     return {
         'statusCode': 200,
         'body': json.dumps({

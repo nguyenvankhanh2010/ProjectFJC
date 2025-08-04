@@ -1,27 +1,28 @@
 ---
-title: "Bước 2.3: Cấu Hình Quyền IAM cho Lambda"
+title: "Bước 4.3: Cấu Hình Quyền IAM cho Lambda"
 date: 2025-07-07
-weight: 4
+weight: 4.3
 chapter: false
-pre: " <b> 4.3 </b> "
+pre: "<b>4.3 </b>"
 ---
 
-
-# Bước 2.3: Cấu Hình Quyền IAM cho Lambda
+# Bước 4.3: Cấu Hình Quyền IAM cho Lambda
 
 #### Tại Sao Quan Trọng
 
-Hàm Lambda cần các quyền cụ thể để mô tả EC2 instance, volume, snapshot và xóa snapshot không sử dụng. Bước này đảm bảo hàm có chính sách IAM cần thiết để thực hiện các hành động này.
+Hàm Lambda cần quyền để mô tả các instance, volume, snapshot EC2 và xóa snapshot. Bước này tạo và gắn chính sách IAM để cấp các quyền này.
 
 ---
 
 ## Hướng Dẫn
 
 1. **Điều Hướng đến IAM Console**:
-   - Từ AWS Console, nhấp **Services** → **IAM** để truy cập Identity and Access Management Console.
+   - Từ trang chủ AWS Console, nhấp **Services** → **IAM** để vào Identity and Access Management Console.
+
+   ![Tạo Chính Sách IAM](/images/iam_policy_creation.png?featherlight=false&width=90pc)
 
 2. **Tạo Chính Sách**:
-   - Vào **Policies** → Nhấp **Create Policy**.
+   - Trong IAM Console, nhấp **Policies** ở thanh bên trái, sau đó nhấp **Create Policy**.
    - Chọn tab **JSON** và dán chính sách sau:
 
 ```json

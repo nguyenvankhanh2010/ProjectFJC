@@ -1,36 +1,34 @@
 ---
-title: "Step 2.4: Test Lambda with Terminated EC2 Instance"
+title: "Step 4.4: Test Lambda with Terminated EC2 Instance"
 date: 2025-07-07
-weight: 4
+weight: 4.4
 chapter: false
-pre: " <b> 4.4 </b> "
+pre: "<b>4.4 </b>"
 ---
 
-
-# Step 2.4: Test Lambda with Terminated EC2 Instance
+# Step 4.4: Test Lambda with Terminated EC2 Instance
 
 #### Why It Matters
 
-Terminating the EC2 instance creates a scenario where the snapshot becomes stale (not associated with an active volume). This step tests the Lambda function’s ability to detect and delete such snapshots, confirming its cost-saving functionality.
+Terminating the EC2 instance makes the snapshot stale (not associated with an active volume), allowing you to test the Lambda function’s ability to detect and delete such snapshots.
 
 ---
 
 ## Instructions
 
 1. **Terminate the EC2 Instance**:
-   - Navigate to **EC2 Console** → **Instances**.
-   - Select `TestInstance` → Click **Instance State** → **Terminate Instance**.
-   - Confirm the termination and wait for the instance status to show **Terminated**.
+   - Navigate to the EC2 Console ( **Services** → **EC2**).
+   - In the **Instances** section, select the `TestInstance` created in Step 4.1.
+   - Click **Instance State** → **Terminate Instance**.
+   - Confirm the termination and wait for the instance to reach the **Terminated** state.
 
-![EC2 Termination](../images/ec2_termination.png?featherlight=false&width=90pc)
+2. **Run the Lambda Function**:
+   - Return to the Lambda Console and select the `StaleSnapshotCleaner` function.
+   - In the **Code** tab, click **Test** and select the `TestEvent`.
+   - Execute the test and check the output. The function should detect and delete the `TestSnapshot` because its associated volume (from the terminated instance) no longer exists.
 
-2. **Run Lambda Function**:
-   - Navigate to **Lambda Console** → Select `StaleSnapshotCleaner` function.
-   - In the **Code** section, click **Test** to run the function with the `TestEvent`.
-   - Check the output, which should indicate that the snapshot (`TestSnapshot`) was deleted because its associated volume no longer exists.
-
-![Lambda Deletion Output](../images/lambda_deletion_output.png?featherlight=false&width=90pc)
+   ![Lambda Deletion Output](/images/lambda_deletion_output.png?featherlight=false&width=90pc)
 
 ---
 
-> **Did you know?** Terminating an EC2 instance does not automatically delete its associated EBS volume or snapshots, which is why manual or automated cleanup is essential for cost management.
+> **Did you know?** Terminating an EC2 instance does not automatically delete its associated EBS volumes or snapshots, which can accumulate costs if not cleaned up.
