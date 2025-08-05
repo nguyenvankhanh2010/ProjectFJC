@@ -1,5 +1,5 @@
 ---
-title: "Giới thiệu: Quản lý chi phí AWS hiệu quả"
+title: "Giới thiệu: Xây dựng hệ thống quản lý chi phí AWS hiệu quả"
 weight: 1
 chapter: false
 ---
