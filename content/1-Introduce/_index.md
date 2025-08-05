@@ -1,5 +1,5 @@
 ---
-title: "Introduction: Efficient AWS Cost Management"
+title: "Introduction: Building an effective AWS Cost Management system"
 weight: 1
 chapter: false
 ---
