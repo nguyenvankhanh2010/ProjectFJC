@@ -1,4 +1,4 @@
-# Efficient AWS Cost Management through Stale Resource Detection
+# Building an effective AWS Cost Management system
 
 ## Issue :
 Sometimes, developers create EC2 instances with disks attached by default. For backups, these developers also create backups. However, when they no longer need the EC2 instance and decide to terminate it, they sometimes forget to delete the backups they created for backups. As a result, they continue to incur costs for these unused backups, even though they are not actively using them.
